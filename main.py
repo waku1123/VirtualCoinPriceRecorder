@@ -48,7 +48,7 @@ def write_csv(year_month: str, datestr: str, timestr: str, price: float) -> None
 
 # 出力ディレクトリ内の最新ファイル名を返す
 def getlatest_file_name(year_month: str, directry_name: str) -> str:
-    inner_dir = os.listdir(directry_name)
+    inner_dir = list(pathlib.Path(directry_name).glob("*[!gitkeep]"))
     if len(inner_dir) < 1:
         return year_month + ".csv"
     else:
